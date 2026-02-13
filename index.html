@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Para vos💖 </title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #1a0013, #4b002f);
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin-top: 40px;
+}
+
+img {
+  width: 270px;
+  border-radius: 25px;
+  margin-top: 25px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  filter: brightness(1.08) contrast(1.08) saturate(1.15);
+  transition: 0.6s ease;
+}
+
+h1 {
+  font-size: 28px;
+  max-width: 80%;
+  line-height: 1.5;
+  text-shadow: 0 0 15px rgba(255, 100, 150, 0.7);
+}
+
+p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+button {
+  padding: 18px 40px;
+  font-size: 20px;
+  margin: 20px;
+  border-radius: 35px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: bold;
+
+}
+
+.yes {
+  background-color: #ff4d88;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 77, 136, 0.6);
+}
+
+.yes:hover {
+  background-color: #ff1a66;
+  transform: scale(1.1);
+}
+
+.no {
+  background-color: #2c2c2c;
+  color: white;
+  position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="aboutyou.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="mainContent">
+
+<img id="photo" src="foto1.jpg">
+
+<h1>
+“Aunque el mundo invente mil motivos para alejarnos, 
+yo inventaré mil caminos más para quedarme contigo 
+y caminar siempre a tu lado.”
+</h1>
+
+<p>
+No prometo un mundo perfecto, pero sí un lugar seguro en mí.
+</p>
+
+<button class="yes" onclick="aceptar()">Sí 🫶🏻</button>
+<button class="no" id="noBtn">No 🙄</button>
+
+</div>
+
+<script>
+
+const music = document.getElementById("music");
+
+// Activar música al primer toque (necesario en iPhone)
+document.addEventListener("click", function() {
+  music.currentTime = 34;
+  music.play();
+}, { once: true });
+
+const noBtn = document.getElementById("noBtn");
+const photo = document.getElementById("photo");
+
+const photos = ["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg"];
+let photoIndex = 0;
+
+noBtn.addEventListener("click", function() {
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 60);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  photoIndex = (photoIndex + 1) % photos.length;
+  photo.src = photos[photoIndex];
+});
+
+function aceptar() {
+  document.getElementById("mainContent").innerHTML = `
+    <h1 style="margin-top:100px;">
+    Entonces ya es oficial… <br><br>
+    sos mi San Valentín, mi ratuna 🐀
+    </h1>
+    <img id="finalPhoto" src="foto1.jpg" style="margin-top:30px; width:260px; border-radius:20px;">
+  `;
+
+  const finalPhotos = ["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg"];
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % finalPhotos.length;
+    document.getElementById("finalPhoto").src = finalPhotos[index];
+  }, 2500);
+}
+
+</script>
+</body>
+</html>
